@@ -1,0 +1,88 @@
+---
+title: Posit Environment Installation Checklist
+format: PositQuarto-pdf
+---
+
+```{r}
+#| echo: false
+customer_name <- "RStudio"
+
+# Going to assume if server count >1 for a product its getting set up in the same cluster
+workbench_servers <- 2 
+connect_servers <- 0
+pm_servers<- 0
+
+os <- "rhel"
+auth <- "saml"
+user_provisioning<-"automatic"
+
+install_date <- "2023-07-01"
+csm <- "Shannon Hagerty (shannon@posit.co)"
+
+```
+
+**Installation Plan for:** `r customer_name`  
+**Target Install Complete Date:** `r install_date` 
+
+For any technical issues please fill out a support ticket following [these steps](https://support.posit.co/hc/en-us/articles/360004788294-How-do-I-submit-a-Support-ticket-). For all other questions please email your customer success rep `r csm`.
+
+--- 
+
+### Requirements for Installation:
+
+-   `r workbench_servers` server(s) for Posit Workbench
+
+    -   [Minimum requirements](https://support.posit.co/hc/en-us/articles/115002344588-Configuration-and-sizing-recommendations)
+
+    -   [What to know about your use case before sizing?](https://solutions.posit.co/admin-training/courses/workbench/07_scaling.html)
+
+    -   [Sizing Calculator](https://gallery.shinyapps.io/instanceCalc/)
+
+-   `r connect_servers` server(s) for Posit Connect
+
+    -   [Minimum requirements](https://support.posit.co/hc/en-us/articles/115002344588-Configuration-and-sizing-recommendations)
+
+    -   [What to know about your use case before sizing?](https://solutions.posit.co/admin-training/courses/connect/scaling.html)
+
+-   `r pm_servers` server(s) for Package Manager
+
+    -   [Minimum requirements](https://support.posit.co/hc/en-us/articles/115002344588-Configuration-and-sizing-recommendations)
+
+```{r}
+#| echo: false
+#| output: false
+
+library(tidyverse)
+library(gt)
+```
+### Installation Steps
+
+```{r}
+#| echo: false
+#| warning: false
+#| 
+checklist <- read_csv("install_checklist.csv")
+
+checklist<-checklist |> 
+  mutate(Info =case_when(is.na(Description)&is.na(Resources) ~ paste(""),
+                         is.na(Resources) ~ paste(Description),
+                         is.na(Description) ~ paste("<b>Resources: </b>",Resources),
+                         TRUE ~ paste(Description,"<b>Resources: </b>",Resources))) 
+
+
+
+checklist %>%
+select(Category, Step, Info) %>%
+group_by(Category)  %>%
+gt() %>%
+fmt_markdown(columns=Info) %>%
+tab_style(style = list(cell_text(weight="bold", align="center")),
+          locations = cells_row_groups()) %>%
+tab_options(column_labels.hidden = TRUE,
+              stub.border.width = px(2),
+  stub.border.color = "black")
+
+
+```
+
+
