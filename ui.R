@@ -23,7 +23,8 @@ fluidPage(
         label = "Authentication",
         choices = list("SAML" = "saml", "Local" = "local", "OIDC/OAuth 2.0" = "oidc"),
         selected = "saml"
-      )
+      ),
+      downloadButton(outputId = "report", label = "Generate Report")
     ),
 
     # Show a plot of the generated distribution
