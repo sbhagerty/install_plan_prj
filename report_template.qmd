@@ -1,6 +1,14 @@
 ---
 title: Posit Environment Installation Checklist
-format: PositQuarto-pdf
+format: 
+  PositQuarto-pdf:
+    output-file: "Posit_Customer_Checklist.pdf"
+params:
+  wb_servers: 1
+  connect_servers: 1
+  pm_servers: 1
+  os: "ubuntu22"
+  auth: "saml"
 ---
 
 ```{r}
@@ -8,12 +16,6 @@ format: PositQuarto-pdf
 customer_name <- "RStudio"
 
 # Going to assume if server count >1 for a product its getting set up in the same cluster
-workbench_servers <- 2 
-connect_servers <- 0
-pm_servers<- 0
-
-os <- "rhel"
-auth <- "saml"
 user_provisioning<-"automatic"
 
 install_date <- "2023-07-01"
@@ -30,7 +32,7 @@ For any technical issues please fill out a support ticket following [these steps
 
 ### Requirements for Installation:
 
--   `r workbench_servers` server(s) for Posit Workbench
+-   `r params$wb_servers` server(s) for Posit Workbench
 
     -   [Minimum requirements](https://support.posit.co/hc/en-us/articles/115002344588-Configuration-and-sizing-recommendations)
 
@@ -38,50 +40,51 @@ For any technical issues please fill out a support ticket following [these steps
 
     -   [Sizing Calculator](https://gallery.shinyapps.io/instanceCalc/)
 
--   `r connect_servers` server(s) for Posit Connect
+-   `r params$connect_servers` server(s) for Posit Connect
 
     -   [Minimum requirements](https://support.posit.co/hc/en-us/articles/115002344588-Configuration-and-sizing-recommendations)
 
     -   [What to know about your use case before sizing?](https://solutions.posit.co/admin-training/courses/connect/scaling.html)
 
--   `r pm_servers` server(s) for Package Manager
+-   `r params$pm_servers` server(s) for Package Manager
 
     -   [Minimum requirements](https://support.posit.co/hc/en-us/articles/115002344588-Configuration-and-sizing-recommendations)
 
-```{r}
+```{r source_functions}
 #| echo: false
 #| output: false
 
 library(tidyverse)
 library(gt)
+library(fs)
+
+file_paths <- fs::dir_ls("R")
+purrr::map(file_paths, function(path){source(path)})
 ```
+
 ### Installation Steps
 
 ```{r}
 #| echo: false
 #| warning: false
 #| 
-checklist <- read_csv("install_checklist.csv")
-
-checklist<-checklist |> 
-  mutate(Info =case_when(is.na(Description)&is.na(Resources) ~ paste(""),
-                         is.na(Resources) ~ paste(Description),
-                         is.na(Description) ~ paste("<b>Resources: </b>",Resources),
-                         TRUE ~ paste(Description,"<b>Resources: </b>",Resources))) 
+checklist_df <- get_checklist()
 
 
+customer_conditions <- list_conditions(
+  wb_servers = params$wb_servers,
+  connect_servers = params$connect_servers,
+  pm_servers = params$pm_servers,
+  os = params$os,
+  auth = params$auth
+)
 
-checklist %>%
-select(Category, Step, Info) %>%
-group_by(Category)  %>%
-gt() %>%
-fmt_markdown(columns=Info) %>%
-tab_style(style = list(cell_text(weight="bold", align="center")),
-          locations = cells_row_groups()) %>%
-tab_options(column_labels.hidden = TRUE,
-              stub.border.width = px(2),
-  stub.border.color = "black")
+customer_checklist_df <- checklist_df |> 
+  build_checklist(customer_conditions) |> 
+  filter_table()
 
+
+format_table(customer_checklist_df)
 
 ```
 
