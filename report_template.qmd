@@ -1,6 +1,8 @@
 ---
 title: Posit Environment Installation Checklist
-format: PositQuarto-pdf
+format: 
+  PositQuarto-pdf:
+    output-file: "Posit_Customer_Checklist.pdf"
 params:
   wb_servers: 1
   connect_servers: 1

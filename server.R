@@ -34,22 +34,18 @@ function(input, output, session) {
     filename = "Posit_Customer_Checklist.pdf",
     content = function(file) {
       
-      temp_file <- tempfile(fileext = ".pdf")
-      
       quarto::quarto_render(
-        "report_template.qmd", 
-        output_format = "pdf",
+        "report_template.qmd",
         execute_params = list(
           wb_servers = input$wb_servers,
           connect_servers = input$connect_servers,
           pm_servers = input$pm_servers,
           os = input$os,
           auth = input$auth
-        ),
-        output_file = temp_file
+        )
       )
       
-      file.copy(temp_file, file)
+      file.copy("Posit_Customer_Checklist.pdf", file)
       
     }
   )
