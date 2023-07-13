@@ -1,6 +1,6 @@
 # Posit Installation Plan
 
-This app helps curate an installation checklist and curates documenation for a customer's specific architecture.
+This app helps curate an installation checklist with relevant documenation for a customer's specific architecture.
 
 # Motivation
 
