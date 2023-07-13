@@ -13,6 +13,7 @@ params:
 
 ```{r}
 #| echo: false
+
 customer_name <- "RStudio"
 
 # Going to assume if server count >1 for a product its getting set up in the same cluster
@@ -67,7 +68,7 @@ purrr::map(file_paths, function(path){source(path)})
 ```{r}
 #| echo: false
 #| warning: false
-#| 
+
 checklist_df <- get_checklist()
 
 

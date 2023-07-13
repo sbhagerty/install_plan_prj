@@ -1,5 +1,8 @@
 function(input, output, session) {
   
+  waitress <- Waitress$
+    new("#report", theme = "overlay-percent")
+  
   output$intro <- renderText({
     paste("Hello", input$wb_servers)
   })
@@ -28,11 +31,14 @@ function(input, output, session) {
       user_checklist()
     )
   )
-  
 
   output$report <- downloadHandler(
     filename = "Posit_Customer_Checklist.pdf",
     content = function(file) {
+      
+      waitress$start()
+      
+      waitress$auto(value = 17, ms = 1300)
       
       quarto::quarto_render(
         "report_template.qmd",
@@ -46,7 +52,7 @@ function(input, output, session) {
       )
       
       file.copy("Posit_Customer_Checklist.pdf", file)
-      
+      waitress$close()
     }
   )
 }
