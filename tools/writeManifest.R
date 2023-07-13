@@ -1,5 +1,5 @@
 rsconnect::writeManifest(
-  appDir = ".", 
+  appDir = getwd(), 
   appPrimaryDoc = c("global.R",
                     "ui.R",
                     "server.R"),

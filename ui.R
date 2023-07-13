@@ -32,5 +32,7 @@ fluidPage(
       textOutput("intro"),
       gt_output(outputId = "table")
     )
-  )
+  ),
+  
+  waiter::use_waitress()
 )
