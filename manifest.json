@@ -3190,24 +3190,24 @@
         "Package": "rsconnect",
         "Type": "Package",
         "Title": "Deployment Interface for R Markdown Documents and Shiny\nApplications",
-        "Version": "0.8.27",
-        "Authors@R": "c(\n    person(\"Aron\", \"Atkins\", role = c(\"aut\", \"cre\"), email = \"aron@rstudio.com\"),\n    person(\"Jonathan\", \"McPherson\", role = \"aut\", email = \"jonathan@rstudio.com\"),\n    person(\"JJ\", \"Allaire\", role = \"aut\"),\n    person(\"RStudio\", role = c(\"cph\", \"fnd\"))\n    )",
-        "Description": "Programmatic deployment interface for 'RPubs', 'shinyapps.io', and\n    'RStudio Connect'. Supported content types include R Markdown documents,\n    Shiny applications, Plumber APIs, plots, and static web content.",
+        "Version": "0.8.29",
+        "Authors@R": "c(\n    person(\"Aron\", \"Atkins\", role = c(\"aut\", \"cre\"), email = \"aron@posit.co\"),\n    person(\"Jonathan\", \"McPherson\", role = \"aut\", email = \"jonathan@posit.co\"),\n    person(\"JJ\", \"Allaire\", role = \"aut\"),\n    person(\"Posit Software\", role = c(\"cph\", \"fnd\"))\n    )",
+        "Description": "Programmatic deployment interface for 'RPubs', 'shinyapps.io', and\n    'Posit Connect'. Supported content types include R Markdown documents,\n    Shiny applications, Plumber APIs, plots, and static web content.",
         "Depends": "R (>= 3.0.0)",
         "Imports": "curl, digest, jsonlite, openssl (>= 2.0.0), packrat (>= 0.6),\nrstudioapi (>= 0.5), tools, yaml (>= 2.1.5)",
         "Suggests": "MASS, RCurl, callr, httpuv, knitr, plumber (>= 0.3.2),\nreticulate, rmarkdown (>= 1.1), shiny, sourcetools, testthat,\nxtable",
         "License": "GPL-2",
         "Encoding": "UTF-8",
-        "RoxygenNote": "7.1.2",
+        "RoxygenNote": "7.2.1",
         "URL": "https://github.com/rstudio/rsconnect",
         "BugReports": "https://github.com/rstudio/rsconnect/issues",
         "NeedsCompilation": "no",
-        "Packaged": "2022-07-12 16:34:47 UTC; aron",
-        "Author": "Aron Atkins [aut, cre],\n  Jonathan McPherson [aut],\n  JJ Allaire [aut],\n  RStudio [cph, fnd]",
-        "Maintainer": "Aron Atkins <aron@rstudio.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2022-07-12 17:00:02 UTC",
-        "Built": "R 4.2.1; ; 2022-09-04 02:41:14 UTC; windows"
+        "Packaged": "2023-01-09 19:03:45 UTC; aron",
+        "Author": "Aron Atkins [aut, cre],\n  Jonathan McPherson [aut],\n  JJ Allaire [aut],\n  Posit Software [cph, fnd]",
+        "Maintainer": "Aron Atkins <aron@posit.co>",
+        "Repository": "RSPM",
+        "Date/Publication": "2023-01-09 22:50:10 UTC",
+        "Built": "R 4.2.0; ; 2023-01-10 12:26:02 UTC; windows"
       }
     },
     "rstudioapi": {
@@ -4250,10 +4250,13 @@
       "checksum": "325be5f65c90d131cdefa94c7e2102af"
     },
     "app.R": {
-      "checksum": "249c46482cea29c6d4c3cc045ccfc8fc"
+      "checksum": "c678fc5f75a35b01759c882fbcdc2ed4"
     },
     "data/install_checklist.csv": {
       "checksum": "6ea403525f86386da5da68ce98952683"
+    },
+    "global.R": {
+      "checksum": "249c46482cea29c6d4c3cc045ccfc8fc"
     },
     "R/format_table.R": {
       "checksum": "fc538791079d241c3d97cf8f90accb6e"
@@ -4266,9 +4269,6 @@
     },
     "report_template.qmd": {
       "checksum": "e1b64fed74b70910ecfc19dd4356686b"
-    },
-    "server.R": {
-      "checksum": "c678fc5f75a35b01759c882fbcdc2ed4"
     },
     "ui.R": {
       "checksum": "84c6bcb7ea91a02cd20b8794450787c5"
