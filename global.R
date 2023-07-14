@@ -3,6 +3,7 @@ library(gt)
 library(tidyverse)
 library(fs)
 library(waiter)
+library(bslib)
 
 file_paths <- fs::dir_ls("R")
 purrr::map(file_paths, function(path){source(path)})
